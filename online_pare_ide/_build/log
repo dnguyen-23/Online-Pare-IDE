@@ -1,0 +1,5 @@
+# dune init project online_pare_ide
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root: /home/danielnguyen/ocaml/Online-Pare_IDE/online_pare_ide
+# Auto-detected concurrency: 8

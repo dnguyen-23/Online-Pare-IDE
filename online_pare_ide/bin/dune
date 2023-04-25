@@ -1,0 +1,4 @@
+(executable
+ (public_name online_pare_ide)
+ (name main)
+ (libraries online_pare_ide core str))
