@@ -1,0 +1,4 @@
+"Resource: /home/danielnguyen/ocaml/Online-Pare_IDE/online_pare_ide/bin/main.ml": "\144\018\210\029\196H\023i\153\203\196?d\230p&"
+"Rule: ocaml: cmo* -> byte (%=main )": "m\020\011\241A\179x#!\018\137r\185\246\237\184"
+"Rule: ocaml: ml -> cmo & cmi (%=main )": "\160\003\012\248\157\021,,[\250\255\253|\170\209d"
+"Rule: ocaml dependencies ml (%=main )": "\1861O\249\169\234\028<\148\223\177\198W\236\155\211"

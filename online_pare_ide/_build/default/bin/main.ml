@@ -241,7 +241,7 @@ let print_hash ~key ~data buffer =
   buffer ^ "Name: " ^ key ^ " |||| Value: " ^ (string_parse_result "" data) ^ "\n"
 ;;
 
-(* let find_var tbl name = 
+let find_var tbl name = 
   Caml.print_endline ("\n\n** Printing out variable: " ^ name ^ " **\n");
   Caml.print_endline (Hashtbl.fold tbl ~f:print_hash ~init:"");
   (match (Hashtbl.find tbl name) with
@@ -249,8 +249,7 @@ let print_hash ~key ~data buffer =
     Caml.print_endline(string_parse_result "" t)
   | _ -> failwith ("variable not found: " ^ name)
   )
-;; *)
-
+;;
 (* t is a series of term types; but it still registers as a term *)
 (* variables starts off as an empty Hashtbl *)
 (* Must always carry variables because the ones created must be remembered
