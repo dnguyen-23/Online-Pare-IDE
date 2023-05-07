@@ -1,4 +1,4 @@
 (executable
  (public_name online_pare_ide)
  (name main)
- (libraries online_pare_ide core str))
+ (libraries online_pare_ide js_of_ocaml core str))
