@@ -25,9 +25,9 @@ $password = $conn->real_escape_string($password);
 
 // Query information
 $sql = <<<SQL
-    SELECT usr_email, usr_password
+    SELECT usr_id, usr_email, usr_password
     FROM users
-    WHERE usr_email = $userEmail
+    WHERE usr_email = '$userEmail'
 SQL;
 
 // Execute the query and redirect to the list
@@ -35,7 +35,9 @@ if ($conn->query($sql) == TRUE)
 {
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    if ($row['password'] == $password) {
+    if ($row['usr_password'] == $password) {
+        session_start();
+        $_SESSION['usrId'] = $row['usr_id'];
         header('Location: index.php?content=projects');
     }
     

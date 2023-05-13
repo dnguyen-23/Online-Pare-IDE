@@ -33,22 +33,14 @@
 
     // Build the SELECT statement
     $sql = <<<SQL
-    -- SELECT app_id, app_date, cus_first_name, cus_last_name, cus_phone, cus_email,
-    --        GROUP_CONCAT(CONCAT(par_name, ' - ', pka_name) ORDER BY par_name, pka_name SEPARATOR '<br>') as field_list
-    --   FROM applications
-    --              JOIN customers              ON cus_id = app_cus_id
-    --   LEFT OUTER JOIN application_park_areas ON apa_app_id = app_id
-    --   LEFT OUTER JOIN park_areas             ON apa_pka_id = pka_id
-    --   LEFT OUTER JOIN parks                  ON pka_par_id = par_id
-    --  GROUP BY 1, 2, 3, 4, 5, 6
-    --  ORDER BY app_date, cus_last_name, cus_first_name, app_id
+        SELECT usr_id, usr_first_name, usr_last_name, usr_email, usr_password,
+            GROUP_CONCAT(prj_name ORDER BY prj_name SEPARATOR '<br>') as project_list
+        FROM users
+        JOIN projects ON usr_id = prj_usr_id
+        GROUP BY usr_id
+        ORDER BY usr_first_name
 
-    SELECT usr_first_name, usr_last_name, usr_email, usr_password, 
-        GROUP_CONCAT(prj_name ORDER BY prj_name SEPARATOR '<br>') as project_list
-    FROM users
-    JOIN projects ON usr_id = prj_usr_id
-    ORDER BY usr_first_name, prj_name
-    GROUP BY usr_email
+    
     SQL;
 
     // Execute the query and save the results
@@ -59,12 +51,12 @@
     // Iterate over each row in the results
     while ($row = $result->fetch_assoc())
     {
-        echo '<tr class="align-middle" style="cursor:pointer" onclick="editUser(' . $row['app_id'] . ')">';
-        echo '<td>' . $row['usr_id'] . '</td>';
-        echo '<td>' . $row['usr_last_name'] . ', ' . $row['usr_first_name'] . '</td>';
-        echo '<td><a href="mailto:'. $row['cus_email'] . '">' . $row['cus_email'] . '</a></td>';
+        echo '<tr class="align-middle" style="cursor:pointer" onclick="editUser(' . $row['usr_id'] . ')">';
+        echo '<td>' . $row['usr_first_name'] . '</td>';
+        echo '<td>' . $row['usr_last_name'] . '</td>';
+        echo '<td><a href="mailto:'. $row['usr_email'] . '">' . $row['usr_email'] . '</a></td>';
         echo '<td>' . $row['usr_password'] . '</td>';
-        echo '<td>' . $row['prj_list'] . '</td>';
+        echo '<td>' . $row['project_list'] . '</td>';
         echo '</tr>';
 
         $empty = false;

@@ -16,7 +16,7 @@ CREATE TABLE `users` (
 CREATE TABLE `projects` (
     `prj_id`             int NOT NULL AUTO_INCREMENT,
     `prj_name`			 varchar(100) NOT NULL,
-    `prj_code`           varchar(100) DEFAULT NULL,
+    `prj_code`           longtext DEFAULT NULL,
     `prj_usr_id`         int NOT NULL,          
     PRIMARY KEY (`prj_id`),
     INDEX `prj_usr_id` (`prj_usr_id`)
