@@ -16,23 +16,24 @@
         <label for="projectId" class="form-label">Projects</label>
         <select name="projectId" class="form-select" size="10">
         <?php
-        session_start();
-        $id = $_SESSION["usrId"];
-        $sql = <<<SQL
-        SELECT prj_id, prj_name
-        FROM projects
-        WHERE prj_usr_id = $id
-        SQL;
+            
+            session_start();
+            $id = $_SESSION["usrId"];
+            $sql = <<<SQL
+            SELECT prj_id, prj_name
+            FROM projects
+            WHERE prj_usr_id = $id
+            SQL;
 
-        $conn = get_database_connection();
-        $result = $conn->query($sql);
-        
-        while ($row = $result->fetch_assoc())
-        {   
-            echo '<option value="' . $row['prj_id'] . '"' . $select . '>' . $row['prj_name'] . '</option>';
-        }
-        $conn->close();
-        
+            $conn = get_database_connection();
+            $result = $conn->query($sql);
+            
+            while ($row = $result->fetch_assoc())
+            {   
+                echo '<option value=' . $row["prj_id"] . $select . '>'. $row["prj_id"] . '-' . $row['prj_name'] . '</option>';
+            }
+            $conn->close();
+            
         ?>
         </select>
 
@@ -42,7 +43,7 @@
 
     <div class="mb-3">
         <label for="newProjectName" class="form-label">New Project</label>
-        <input name="newProjectName" class="form-control" type="text">
+        <input type="text" name="newProjectName" class="form-control" >
     </div>
 
     <button type="submit" class="btn btn-primary">Go</button>

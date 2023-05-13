@@ -9,22 +9,25 @@
 
 <!-- Get existing code -->
 <?php
-    $pId = $_SESSION["prjId"];
+    session_start();
+    $pId = $_SESSION['prjId'];
     $sql = <<<SQL
-        SELECT prj_code
+        SELECT prj_name, prj_code
         FROM projects
         WHERE prj_id = $pId
     SQL;
-
+    
     $conn = get_database_connection();
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
+    
+    
 ?>
 
 <form action="saveProject.php" method="POST">
     <div class="mb-3">
-        <label for="projectCode" class="form-label">Code</label>
-        <input name="projectCode" class="form-control" type="text" value=<?php echo $row['prj_code']?>>
+        <label for="projectCode" class="form-label">Currently working on: <?php echo $row['prj_name']; ?></label>
+        <textarea name="projectCode" class="form-control" rows="4" cols="50" ><?php echo $row['prj_code'];?></textarea>
     </div>
-    <button type="submit">Save</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>

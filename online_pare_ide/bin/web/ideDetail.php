@@ -111,6 +111,7 @@ $conn->close();
 
 if (isset($id))
 {
+    
     echo '<a href="javascript:deleteApplication(' . $id . ')" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>';
 }
 
